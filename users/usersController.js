@@ -1,57 +1,45 @@
-// import express for rounting functionality
-import { Router } from 'express'
-// link to usersUtils
-import { GetAllUsers, isAUser } from './usersUtils.js'
-import {auth} from '../authentication.js'
-import jwt from 'jsonwebtoken'
-import fs from 'fs'
+const express = require('express');
+const usersBL = require('../users/usersBL');
 
-let secretKey = fs.readFileSync('/home/michael/Projects/FullStack/Projects/Project MERN/MERN/Server/users/secret_key.key')
+const appRouter = express.Router();
 
-// link to Router function
-const appRoute = Router()
-
-
-// GET all
-appRoute.route('/').get(async function(req,resp)
-{
-    let users = await GetAllUsers()
-    return resp.json(users)
-})
-
-// verify username and password
-appRoute.route('/login').post(async function(req,resp)
-{   
-    let username = req.body.username
-    let password = req.body.password
-    let isUser = await isAUser(username,password)
-    if(isUser.length)
+appRouter.route('/')
+    .get(async function(req,resp)
     {
-        let token = jwt.sign({id: isUser[0]._id}, secretKey, {expiresIn: '1800s'})
-        
-        return resp.status(200).send({'token': token, 'name': isUser[0].name})
-    }
-    else
+        let users = await usersBL.getUsers();
+        return resp.json(users);
+    });
+
+    appRouter.route('/:id')
+    .get(async function(req,resp)
     {
-        return resp.status(401).send({'data': 'username and/or password are not valid'})
-    }
-})
+        let id = req.params.id;
+        let user = await usersBL.getUser(id);
+        return resp.json(user);
+    });
 
-// verify token
-appRoute.route('/auth').post(function(req, resp)
-{
-    let token = req.body.token
-    let isAuth = auth(token)
-    if(isAuth)
+    appRouter.route('/')
+    .post(async function(req,resp)
     {
-        return resp.status(200).send({'auth': true})
-    }
-    else
+        let newUser = req.body;
+        let result = await usersBL.addNewUser(newUser);
+        return resp.json(result);
+    });
+
+    appRouter.route('/:id')
+    .put(async function(req,resp)
     {
-        return resp.status(401).send({'auth': false})
-    }
+        let updatedUser = req.body;
+        let id = req.params.id;
+        let result = await usersBL.updateUser(id,updatedUser);
+        return resp.json(result);
+    });
 
-})
-
-
-export default appRoute;
+    appRouter.route('/:id')
+    .delete(async function(req,resp)
+    {
+        let id = req.params.id;
+        let result = await usersBL.deleteUser(id);
+        return resp.json(result);
+    });
+    module.exports = appRouter; 
