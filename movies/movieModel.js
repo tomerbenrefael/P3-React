@@ -1,17 +1,10 @@
-/ create connection to mongodb
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+let movieSchema = mongoose.Schema;
+let MovieSchema = new movieSchema({
+    name : String,
+    genres :[String],
+    premiered: String,
+    image: String
+});
 
-// schema
-let appSchema = mongoose.Schema;
-
-let movieSchema = new appSchema(
-    {
-        name : String,
-        premiered : String,
-        genres : [String],
-        image : Object
-    }
-)
-
-
-export default mongoose.model('movies', movieSchema)
+module.exports = mongoose.model('movies',MovieSchema);

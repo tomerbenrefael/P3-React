@@ -1,52 +1,44 @@
-// import express for rounting functionality
-import { Router } from 'express'
-// link to moviesUtils
-import { GetAllMovies, GetAMovie, AddMovie, UpdateMovie, Delete } from './moviesUtils.js'
-// link to Router function
-const appRoute = Router()
+const express = require('express');
+const moviesBL = require('../models/moviesBL');
+const appRouter = express.Router();
 
+appRouter.route('/')
+    .get(async function(req,resp)
+    {
+        let movies = await moviesBL.getMovies();
+        return resp.json(movies);
+    });
 
-// GET all
-appRoute.route('/').get(async function(req,resp)
-{
-    let movies = await GetAllMovies()
-    return resp.json(movies)
-})
+    appRouter.route('/:id')
+    .get(async function(req,resp)
+    {
+        let id = req.params.id;
+        let movie = await moviesBL.getMovie(id);
+        return resp.json(movie);
+    });
 
+    appRouter.route('/')
+    .post(async function(req,resp)
+    {
+        let newMovie = req.body;
+        let result = await moviesBL.addNewMovie(newMovie);
+        return resp.json(result);
+    });
 
-// GET a movie
-appRoute.route('/:id').get(async function(req, resp)
-{
-    let id = req.params.id;
-    let movie = await GetAMovie(id);
-    return resp.json(movie)
-})
+    appRouter.route('/:id')
+    .put(async function(req,resp)
+    {
+        let updatedMovie = req.body;
+        let id = req.params.id;
+        let result = await moviesBL.updateMovie(id,updatedMovie);
+        return resp.json(result);
+    });
 
-
-// POST (add a movie)
-appRoute.route('/').post(async function(req,resp)
-{
-    let newmovie = req.body;
-    let result = await AddMovie(newmovie)
-    return resp.json(result)
-})
-
-// PUT (update a movie)
-appRoute.route('/:id').put(async function(req,resp)
-{
-    let id = req.params.id
-    let newmovie = req.body
-    let result = await UpdateMovie(id,newmovie)
-    return resp.json(result)
-})
-
-// Delete a movie
-appRoute.route('/:id').delete(async function(req,resp)
-{
-    let id = req.params.id
-    let result = await Delete(id)
-    return resp.json(result)
-})
-
-
-export default appRoute;
+    appRouter.route('/:id')
+    .delete(async function(req,resp)
+    {
+        let id = req.params.id;
+        let result = await moviesBL.deleteMovie(id);
+        return resp.json(result);
+    });
+    module.exports = appRouter; 

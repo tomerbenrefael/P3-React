@@ -1,9 +1,6 @@
-// create connection to mongodb
+
 import mongoose from 'mongoose';
-
-// schema
 let appSchema = mongoose.Schema;
-
 let subscriptionsSchema = new appSchema(
     {
         member_id : String,

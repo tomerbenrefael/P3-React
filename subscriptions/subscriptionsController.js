@@ -1,49 +1,44 @@
-// import express for rounting functionality
-import { Router } from 'express'
-// link to moviesUtils
-import { GetAllSubscriptions, AddSubscriptions, GetMoviesByMember, GetMembersByMovie } from './subscriptionsUtils.js'
-// link to Router function
-const appRoute = Router()
+const express = require('express');
+const subscriptionsBL = require('../models/subscriptionsBL');
+const appRouter = express.Router();
 
-
-// GET all
-appRoute.route('/').get(async function(req,resp)
-{
-    let subscriptions = await GetAllSubscriptions()
-    return resp.json(subscriptions)
-})
-
-// POST (add a movie)
-appRoute.route('/').post(async function(req,resp)
-{
-    let newSub = req.body;
-    console.log(`${JSON.stringify(newSub)}`);
-    let result = await AddSubscriptions(newSub)
-    return resp.json(result)
-})
-
-// get movies by member id
-appRoute.route('/member/:id').get(async function(req,resp)
-{
-    if(!req.params.id.includes('undefined'))
+appRouter.route('/')
+    .get(async function(req,resp)
     {
-        let movies = await GetMoviesByMember(req.params.id)
-        return resp.json(movies)
-    }
-    console.log('failed to get movies by member id');
-})
+        let subscriptions = await subscriptionsBL.getSubscriptions();
+        return resp.json(subscriptions);
+    });
 
-// get members by movie id
-appRoute.route('/movie/:id').get(async function(req,resp)
-{
-    if(!req.params.id.includes('undefined'))
+    appRouter.route('/:id')
+    .get(async function(req,resp)
     {
-        let members = await GetMembersByMovie(req.params.id)
-        return resp.json(members)
-    }
-    
-    console.log('failed to get members by movie id');
-})
+        let id = req.params.id;
+        let subscription = await subscriptionsBL.getSubscription(id);
+        return resp.json(subscription);
+    });
 
+    appRouter.route('/')
+    .post(async function(req,resp)
+    {
+        let newSub = req.body;
+        let result = await subscriptionsBL.addNewSubscription(newSub);
+        return resp.json(result);
+    });
 
-export default appRoute;
+    appRouter.route('/:id')
+    .put(async function(req,resp)
+    {
+        let updatedSub = req.body;
+        let id = req.params.id;
+        let result = await subscriptionsBL.updateSubscription(id,updatedSub);
+        return resp.json(result);
+    });
+
+    appRouter.route('/:id')
+    .delete(async function(req,resp)
+    {
+        let id = req.params.id;
+        let result = await subscriptionsBL.deleteSubscription(id);
+        return resp.json(result);
+    });
+    module.exports = appRouter; 

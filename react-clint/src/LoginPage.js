@@ -1,7 +1,6 @@
 import './App.css';
 import userBL from './utils/userUtils';
 import { useState } from "react";
-
 import {withRouter} from "react-router-dom";
 
 function LoginComp(props) {
@@ -28,7 +27,7 @@ function LoginComp(props) {
 
   return (
     <div className="App">
- <h1>Movies Subscriptions Web Site !!</h1>
+
 <form onSubmit={e => checkLogin(e)}>
   User Name: <input type="text" onChange={e => setUserName(e.target.value)} /> <br/>
   Password: <input type="text" onChange={e => setUserPwd(e.target.value)} /> <br/>
