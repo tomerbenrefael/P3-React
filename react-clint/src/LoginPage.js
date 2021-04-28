@@ -26,13 +26,20 @@ function LoginComp(props) {
   }
 
   return (
+
     <div className="App">
 
-<form onSubmit={e => checkLogin(e)}>
-  User Name: <input type="text" onChange={e => setUserName(e.target.value)} /> <br/>
-  Password: <input type="text" onChange={e => setUserPwd(e.target.value)} /> <br/>
-    <input type="submit" value="Login" />
-</form>
+<h4>Login Manually</h4>
+        <br/>
+        <form onSubmit={e => checkLogin(e)}>
+          <div className='form-group'>
+          User Name: <input type="text" onChange={e => setUserName(e.target.value)} /> <br/>
+          </div>
+          <div className='form-group'>
+          Password: <input type="text" onChange={e => setUserPwd(e.target.value)} /> <br/>
+          </div>
+          <button type="submit" className='btn btn-primary right-btn'>Log in</button>
+        </form>
     <p style={{ visibility: userNotValid ? 'visible' : 'hidden' , color: 'red'}}>
       One of the values are wrong, pls try again 
     </p>

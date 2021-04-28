@@ -1,11 +1,12 @@
-import LoginComp from "./LoginPage";
+import Login from "./LoginPage";
 
 
 
 function App() {
   return (
     <div className="App">
-  <LoginComp /> 
+   <Header/>
+        <Login/>
   
     </div>
   );
