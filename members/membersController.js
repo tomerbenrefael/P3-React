@@ -1,6 +1,5 @@
 const express = require('express');
 const membersBL = require('../models/membersBL');
-
 const appRouter = express.Router();
 
 appRouter.route('/')

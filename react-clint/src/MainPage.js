@@ -32,16 +32,13 @@ const logOut = ()=>
     
     <div className="App">
 <h2>Movies Subscription WebSite</h2>
-<nav>
  <Button variant="contained" onClick={navToAllMovies}>Movies</Button> &nbsp;
  <Button variant="contained" onClick={navToAllMembers}>Subscription</Button> &nbsp;
  <Button variant="contained" onClick={logOut}>Log Out</Button>
 
-</nav>
-
        <Switch>
       <Route path="/main/movies" component={MainMoviesComp} /> 
-      <Route path="/main/subs" component={MainSubsComp} /> 
+      <Route path="/main/subs" component={MainSubsComp} />  
       <Route exact path="/" component={LoginComp} />  
        </Switch>
 

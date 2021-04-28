@@ -7,7 +7,7 @@ function App() {
     <div className="App">
    <Header/>
         <Login/>
-  
+        <MainPage/>
     </div>
   );
 }
