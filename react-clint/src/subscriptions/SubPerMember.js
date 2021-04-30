@@ -94,7 +94,7 @@ function SubPerMemberComp(props) {
 
       <form onSubmit={ (e) => SaveNewSub(e)}>
         
-    
+  
       <Select value={newMovId} onChange={(e) => setNewMovId(e.target.value)}>
        {
          relevantMovies.map(mov => 

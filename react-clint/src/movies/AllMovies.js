@@ -2,14 +2,24 @@ import { useState , useEffect } from "react";
 import MovieComp from "./MovieComp";
 import moviesBL from '../utils/moviesUtils'
 import Button from '@material-ui/core/Button';
-
+import React from 'react';
 
 function AllMoviesComp(props){
 
   const [allMovies, SetAllMovies] = useState([]);
   const [searchPhrase, setSearchPhrase] = useState('');
 
-
+  const MovieList = (props) => {
+    return (
+      <>
+        {props.movies.map((movie, index) => (
+          <div className='image-container d-flex justify-content-start m-3'>
+            <img src={movie.Poster} alt='movie'></img>
+          </div>
+        ))}
+      </>
+    );
+  };
 
 useEffect(() => {
   let isMounted = true; 

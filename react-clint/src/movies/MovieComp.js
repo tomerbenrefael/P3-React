@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from 'react';
 import moviesBL from '../utils/moviesUtils'
 import {withRouter} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,8 +14,8 @@ import subBL from '../utils/subscriptionUtils';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 400,
-    margin: 10
+    maxWidth: 500,
+    margin: 20
 
   },
   media: {
@@ -54,49 +55,30 @@ function MovieComp(props) {
     props.history.push("/main/movies/edit-movie/" + movID)
   } 
 
-  const deleteMov = async()=>
-  {
-    let result = await moviesBL.deleteMovie(movID);
-    let result2 = await subBL.deleteSubPerMovie(movID)
-    alert(result.data);
-    window.location.reload();
-  }
-
   return (
-<div className="App">
+<div className="movie-card">
     <Card className={classes.root}>
-     
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-        {movie.name}, {movie.premiered}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-        Genres: &nbsp;
-       
-       {movGen.map((gen, index)=> 
-       {
-         return <span key={index}>{gen} </span> 
-       }) } 
-        
-        </Typography>
-
+          <Typography gutterBottom variant="h5" component="h2">
+          {movie.name}, {movie.premiered}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+          Genres: &nbsp;
+            {movGen.map((gen, index)=> 
+            {
+              return <span key={index}>{gen} </span> 
+            }) } 
+          </Typography>
         <CardMedia
         component="img"
         className={classes.media}
         image={movie.image}
         title={movie.name}
       />
-
       <SubPerMovie movId={movID}/>
       </CardContent>
-   
     <CardActions>
-      <Button onClick={goToEdit} size="small" color="primary">
-        Edit
-      </Button>
-      <Button size="small" color="primary" onClick={deleteMov}>
-        Delete 
-      </Button>
+      <Button onClick={goToEdit} size="small" color="primary">Edit</Button>
     </CardActions>
   </Card>
   </div>
