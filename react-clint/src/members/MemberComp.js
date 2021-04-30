@@ -13,18 +13,13 @@ import SubPerMember from "../subscriptions/SubPerMember";
 import subBL from '../utils/subscriptionUtils'
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    margin: 10
-
-  },
+  root: {maxWidth: 345,margin: 10},
 
 });
 
 function MemberComp(props) {
 
   const classes = useStyles();
-
   const [memID] = useState(props.memId);
   const [member, setMember] = useState({});
 
@@ -34,8 +29,7 @@ function MemberComp(props) {
     let isMounted = true; 
     async function fetchData() {
       let result = await membersBL.getMember(memID);
-      if(isMounted){
-        setMember(result.data)
+      if(isMounted){setMember(result.data)
       }
     }
     fetchData();

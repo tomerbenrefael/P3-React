@@ -27,7 +27,6 @@ function MainSubsComp(props){
 
       <nav>
       <Button onClick={showAllMembers}>All Members</Button> &nbsp;
-
         <Button onClick={goToAddMovie}>Add Member</Button>
       </nav>
   

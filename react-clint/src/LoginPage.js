@@ -2,6 +2,10 @@ import './App.css';
 import userBL from './utils/userUtils';
 import { useState } from "react";
 import {withRouter} from "react-router-dom";
+import React from 'react';
+import { Container, Row, Col, Button } from 'reactstrap';
+import { Form, FormGroup, Input } from 'reactstrap';
+
 
 function LoginComp(props) {
   const [userName , setUserName] = useState('');
@@ -27,8 +31,9 @@ function LoginComp(props) {
 
   return (
 
-    <div className="App">
 
+    
+    <div className="App">
 <h4>Login Manually</h4>
         <br/>
         <form onSubmit={e => checkLogin(e)}>
@@ -43,6 +48,9 @@ function LoginComp(props) {
     <p style={{ visibility: userNotValid ? 'visible' : 'hidden' , color: 'red'}}>
       One of the values are wrong, pls try again 
     </p>
+
+
+
 
     </div>
   );
