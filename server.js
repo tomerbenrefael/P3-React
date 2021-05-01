@@ -1,10 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import './configs/db_config.js'
-import moviesController from './movies/moviesController.js'
-import membersController from './members/membersController.js'
-import usersController from './users/usersController.js'
-import subscriptionsController from './subscriptions/subscriptionsController.js'
+
+const usersController = require('./controllers/userController');
+const moviesController = require('./controllers/movieController')
+const membersController = require('./controllers/memberController')
+const subscriptionsController = require('./controllers/subscriptionsController')
 
 
 const express = require("express");
@@ -37,13 +38,13 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-app.use('/users', usersController);
-app.use('/movies', moviesController);
-app.use('/members', membersController);
-app.use('/subscriptions', subscriptionsController);
+app.use('/api/users', usersController);
+app.use('/api/movies', moviesController);
+app.use('/api/members', membersController);
+app.use('/api/subscriptions', subscriptionsController);
 
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 app.listen(port,()=>console.log(`Server up and running on port ${port}`));

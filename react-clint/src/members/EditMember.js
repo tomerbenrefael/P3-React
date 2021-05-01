@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import membersBL from '../utils/membersUtils';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import {useHistory,Link,useParams} from "react-router-dom";
 
 
 function EditMemberComp(props) {
@@ -25,7 +30,7 @@ function EditMemberComp(props) {
     return  () => { isMounted = false };
   }, [memID])
 
-  const UpdateMov = async (e) => 
+  const UpdateMovie = async (e) => 
   {
     e.preventDefault();
     let updatedMem = {name: memName, email: memEmail, city : memCity};
@@ -38,13 +43,12 @@ function EditMemberComp(props) {
   const goBack = () => 
   {
     props.history.push('/main/subs/all-members')
-
   }
+
   return (
     <div className="App">
       <h3>Edit Member {sessionStorage["fullName"]}</h3>
-    
-    <form onSubmit={e => UpdateMov(e)}>
+    <form onSubmit={e => UpdateMovie(e)}>
       Name: <input type="text" value={memName} onChange={ e => setMemName(e.target.value)} /> <br/>
       Email: <input type="text" value={memEmail} onChange={ e => setMemEmail(e.target.value)} /> <br/>
       City: <input type="text" value={memCity} onChange={ e => setMemCity(e.target.value)} /> <br/>

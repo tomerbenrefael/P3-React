@@ -21,16 +21,13 @@ function AllMembersComp(props){
   }, [])
 
   return (
-    <div className="App">
-  
-
+    <div>
       {
         allMembers.map(mem => 
           {
             return <MemberComp key={mem._id} memId={mem._id}></MemberComp>
           })
       }
-
     </div>
   );
 }

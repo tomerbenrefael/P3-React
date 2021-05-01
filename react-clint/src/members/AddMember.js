@@ -23,9 +23,7 @@ function AddMemberComp(props) {
   }
   return (
     <div className="App">
-      
       <h3>Add New Movie {sessionStorage["fullName"]}</h3>
-    
     <form onSubmit={e => AddMem(e)}>
       Name: <input type="text"  onChange={ e => setMemName(e.target.value)} /> <br/>
       Email: <input type="text"  onChange={ e => setMemEmail(e.target.value)} /> <br/>

@@ -30,6 +30,9 @@ const logOut = ()=>
 }
   return (
     <div className="App">
+      <nav>
+      MERN Stack App
+      </nav>
     <h2>Movies WebSite</h2>
     <Button variant="outlined" onClick={navToAllMovies}>
       Movies
