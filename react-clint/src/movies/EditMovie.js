@@ -53,7 +53,10 @@ function EditMovieComp(props) {
       Premiered: <input type="text" value={movPre} onChange={ e => setMovPre(e.target.value)} /> <br/>
       Image Url: <input type="text" value={movImg} onChange={ e => setMovImg(e.target.value)} /> <br/>
       Genres: <input type="text" value={movGen} onChange={ e => setMovGen(e.target.value)} /> <br/>
-      <input type="submit" value="Update" />
+      
+      <Button color="primary" variant="contained"  type="submit">
+          Update
+        </Button>
       <input type="button" value="Cancel" onClick={goBack} />
     </form>
     </div>

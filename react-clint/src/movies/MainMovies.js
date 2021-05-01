@@ -24,13 +24,10 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <h3>Movies - {sessionStorage["fullName"]}</h3>
-
-      <nav>
+      <h4>Movies - {sessionStorage["fullName"]}</h4>
       <Button onClick={showAllMovies}>All Movies</Button> &nbsp;
-
         <Button onClick={goToAddMovie}>Add Movie</Button>
-      </nav>
+
   
   
 

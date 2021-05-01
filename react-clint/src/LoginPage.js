@@ -3,6 +3,11 @@ import userBL from './utils/userUtils';
 import { useState } from "react";
 import {withRouter} from "react-router-dom";
 import React from 'react';
+import * as yup from 'yup';
+import axios from 'axios';
+import { useFormik } from 'formik';
+
+
 
 
 
@@ -29,24 +34,18 @@ function LoginComp(props) {
   }
 
   return (
-
-
-    
     <div className="App">
 <h4>Login Manually</h4>
         <br/>
         <form onSubmit={e => checkLogin(e)}>
-          <div className='form-group'>
           User Name: <input type="text" onChange={e => setUserName(e.target.value)} /> <br/>
-          </div>
-          <div className='form-group'>
           Password: <input type="text" onChange={e => setUserPwd(e.target.value)} /> <br/>
-          </div>
-          <button type="submit" className='btn btn-primary right-btn'>Log in</button>
+          <Button color="primary" variant="contained"  type="submit">
+          Save
+        </Button>
         </form>
-    <p style={{ visibility: userNotValid ? 'visible' : 'hidden' , color: 'red'}}>
-      One of the values are wrong, pls try again 
-    </p>
+
+    <p style={{ visibility: userNotValid ? 'visible' : 'hidden' , color: 'red'}}>Values are wrong, please try again :)</p>
     </div>
   );
 }

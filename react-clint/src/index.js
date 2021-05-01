@@ -9,15 +9,9 @@ import AllMembersComp from './members/AllMembers';
 import MainComp from './MainPage';
 
 ReactDOM.render(
-  <BrowserRouter>
-     <Switch>
-
-      <Route path="/members" component={AllMembersComp} /> 
-      <Route path="/main" component={MainComp} />  
-      <Route exact path="/" component={App} />  
-    </Switch>
-
-  </BrowserRouter>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

@@ -55,6 +55,13 @@ function MovieComp(props) {
     props.history.push("/main/movies/edit-movie/" + movID)
   } 
 
+  const  deleteMovie =async (id,history)=>
+  {
+      await moviesUtils.deleteMovie(id)
+      history.push('/movies')
+  }
+
+
   return (
 <div className="movie-card">
     <Card className={classes.root}>
@@ -77,9 +84,10 @@ function MovieComp(props) {
       />
       <SubPerMovie movId={movID}/>
       </CardContent>
-    <CardActions>
+    
       <Button onClick={goToEdit} size="small" color="primary">Edit</Button>
-    </CardActions>
+      <input type="button" value="Delete" onClick={()=>deleteMovie(props.movie._id,history)}/>
+    
   </Card>
   </div>
   );

@@ -19,9 +19,8 @@ function AddMovieComp(props) {
   }
 
   const goBack = () => 
-  {
-    props.history.push('/main/movies/all-movies')
-  }
+  {props.history.push('/main/movies/all-movies')}
+  
   return (
     <div className="App">
       <h3>Add New Movie {sessionStorage["fullName"]}</h3>
@@ -31,7 +30,10 @@ function AddMovieComp(props) {
       Premiered: <input type="text"  onChange={ e => setMovPre(e.target.value)} /> <br/>
       Image Url: <input type="text"  onChange={ e => setMovImg(e.target.value)} /> <br/>
       Genres: <input type="text" onChange={ e => setMovGen(e.target.value)} /> <br/>
-      <input type="submit" value="Add" />
+      
+      <Button color="primary" variant="contained"  type="submit">
+          Save
+        </Button>
       <input type="button" value="Cancel" onClick={goBack} />
     </form>
     </div>

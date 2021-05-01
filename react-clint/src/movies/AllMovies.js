@@ -1,4 +1,5 @@
 import { useState , useEffect } from "react";
+import {Switch,Route,Link,Redirect} from 'react-router-dom'
 import MovieComp from "./MovieComp";
 import moviesBL from '../utils/moviesUtils'
 import Button from '@material-ui/core/Button';

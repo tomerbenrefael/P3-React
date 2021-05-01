@@ -29,22 +29,20 @@ const logOut = ()=>
   props.history.push('/')
 }
   return (
-    
     <div className="App">
-<h2>Movies Subscription WebSite</h2>
- <Button variant="contained" onClick={navToAllMovies}>Movies</Button> &nbsp;
- <Button variant="contained" onClick={navToAllMembers}>Subscription</Button> &nbsp;
- <Button variant="contained" onClick={logOut}>Log Out</Button>
-
+    <h2>Movies WebSite</h2>
+    <Button variant="outlined" onClick={navToAllMovies}>
+      Movies
+    </Button> &nbsp;
+    <Button variant="outlined" onClick={navToAllMembers}>
+      Subscriptions
+    </Button> &nbsp;
+      <Button variant="outlined" onClick={logOut}>Log Out</Button> <br/><br/>
        <Switch>
       <Route path="/main/movies" component={MainMoviesComp} /> 
       <Route path="/main/subs" component={MainSubsComp} />  
       <Route exact path="/" component={LoginComp} />  
        </Switch>
-
-
-
-
     </div>
   );
 }
