@@ -113,6 +113,7 @@ const getSubsPerMemberID = async (id) =>
         }
       })
 
+      
      return "Deleted";
     }
 
