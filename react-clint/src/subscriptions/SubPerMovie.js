@@ -46,10 +46,7 @@ function SubPerMovieComp(props) {
     <Card className={classes.root}>
     <CardActionArea>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
         Subscription Watched:
-        </Typography>
-       
         <ul>
           {
             subs.map((sub) =>
@@ -63,12 +60,7 @@ function SubPerMovieComp(props) {
         
       </CardContent>
     </CardActionArea>
-    <CardActions>
- 
-    </CardActions>
   </Card>
-
-
   );
 }
 

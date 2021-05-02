@@ -1,17 +1,7 @@
 import axios from 'axios';
 
-const getAllSubscription = ()=> 
-{
-    return axios.get("http://localhost:8000/api/subscriptions");
-}
-
-
-const addSub = (newSub)=> 
-{
-    return axios.post("http://localhost:8000/api/subscriptions" , newSub);
-
-}
-
+const getAllSubscription = ()=>{return axios.get("http://localhost:8000/api/subscriptions");}
+const addSub = (newSub)=>{return axios.post("http://localhost:8000/api/subscriptions" , newSub);}
 const getSubsPerMovieID = async (id) =>
   {
     let resp = await axios.get("http://localhost:8000/api/subscriptions");

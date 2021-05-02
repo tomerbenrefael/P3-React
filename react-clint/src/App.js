@@ -6,20 +6,6 @@ import MainPage from './MainPage';
 import { useState } from 'react';
 
 function App() {
-
-  const [token,setToken]= useState();
-  if(!token){
-   return <Login setToken={setToken} />   
-  }
-  return (
-    <div>
-           <BrowserRouter>
-            <MainPage setToken={setToken} />
-            </BrowserRouter>
-    </div>
-  );
-}
-
-
+  return (<Login />);
 }
 export default App;

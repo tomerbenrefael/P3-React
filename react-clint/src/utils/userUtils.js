@@ -1,13 +1,8 @@
 import axios from 'axios';
 
-const getAllUsers = ()=> 
-{
-    return axios.get("http://localhost:8000/api/users");
-}
-
+const getAllUsers = ()=>{return axios.get("http://localhost:8000/api/users");}
 const isAllowedToLogin = async (usrName, pwd)=> 
 {
-
   let result = await axios.get("http://localhost:8000/api/users");
   let allUsers = await result.data;
   

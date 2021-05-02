@@ -82,7 +82,6 @@ function SubPerMemberComp(props) {
           }
         </ul>
    
-        
       </CardContent>
     </CardActionArea>
     <CardActions>

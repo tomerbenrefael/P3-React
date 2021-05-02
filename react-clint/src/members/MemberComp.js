@@ -9,9 +9,7 @@ import SubPerMember from "../subscriptions/SubPerMember";
 import subBL from '../utils/subscriptionUtils'
 
 const useStyles = makeStyles({
-  root: {maxWidth: 345,margin: 10},
-
-});
+  root: {maxWidth: 345,margin: 10},});
 
 function MemberComp(props) {
   let history = useHistory();

@@ -1,5 +1,4 @@
 const Member = require('./memberModel');
-
 exports.getMembers = function()
 {
     return new Promise((resolve,reject) =>
